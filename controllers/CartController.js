@@ -4,6 +4,8 @@ const getAllCartItems = async (req, res) => {
   try {
     const cart = await CartModel.findOne({
       user: req.query.userId
+    }, {
+      cartItems: 1
     });
 
     res.status(200).json(cart);

@@ -15,6 +15,7 @@ const shoesSchema = new mongoose.Schema({
   },
   category: {
     type: String,
+    enum: ['Men', 'Women', 'Kids'],
     required: true,
   },
   colorVariants: [{
@@ -29,5 +30,7 @@ const shoesSchema = new mongoose.Schema({
   }]
 });
 
+shoesSchema.index({title: 'text'});
 const ShoesModel = mongoose.model('Shoes', shoesSchema, 'shoes');
+
 module.exports = ShoesModel;

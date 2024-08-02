@@ -14,6 +14,21 @@ const loginUser = async (req, res) => {
   }
 }
 
+const updateFavorites = async (req, res) => {
+  try {
+    const user = await UserModel
+      .findByIdAndUpdate(
+        req.query.userId,
+        { favorites: req.body },
+        { new: true }
+      );
+
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
 const signUpUser = async (req, res) => {
   try {
     const user = await UserModel.create(req.body);
@@ -24,5 +39,5 @@ const signUpUser = async (req, res) => {
   }
 }
 
-const UserController = { loginUser, signUpUser };
+const UserController = { loginUser, signUpUser, updateFavorites };
 module.exports = UserController;
