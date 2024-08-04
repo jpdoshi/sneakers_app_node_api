@@ -40,7 +40,7 @@ const getShoesSlider = async (req, res) => {
   try {
     const shoes = await ShoesModel.find().sort('-discount').limit(5);
     
-    res.status(201).json(shoes);
+    res.status(200).json(shoes);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -50,7 +50,7 @@ const searchShoes = async (req, res) => {
   try {
     const shoes = await ShoesModel.find({ $text: { $search: req.query.q } });
     
-    res.status(201).json(shoes);
+    res.status(200).json(shoes);
   } catch (err) {
     res.status(500).send(err);
   }
