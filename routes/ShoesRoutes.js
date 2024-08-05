@@ -3,7 +3,6 @@ const ShoesRoutes = express.Router();
 
 const ShoesController = require('../controllers/ShoesController');
 
-ShoesRoutes.get('/', ShoesController.getAllShoes);
 ShoesRoutes.get('/:shoesId', ShoesController.getShoesById);
 ShoesRoutes.post('/search', ShoesController.searchShoes);
 ShoesRoutes.post('/', ShoesController.createShoes);

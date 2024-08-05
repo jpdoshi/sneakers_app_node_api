@@ -1,20 +1,13 @@
 const ShoesModel = require('../models/ShoesModel');
 
-const getAllShoes = async (req, res) => {
-  try {
-    const shoes = await ShoesModel.find();
-    
-    res.status(200).json(shoes);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-}
-
 const getShoesByCategory = async (req, res) => {
   try {
-    const shoes = await ShoesModel.find({
-      category: req.params.category
-    });
+    const { category } = req.params;
+    let shoes;
+
+    shoes = await ShoesModel.find((category != 'All') ? {
+      category: category
+    } : {});
 
     res.status(200).json(shoes);
   } catch (err) {
@@ -67,7 +60,6 @@ const createShoes = async (req, res) => {
 }
 
 const ShoesController = {
-  getAllShoes,
   getShoesById,
   getShoesSlider,
   getShoesByCategory,
